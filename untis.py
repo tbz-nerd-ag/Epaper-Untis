@@ -1,6 +1,8 @@
 import webuntis, datetime
 from typing import Any
 
+from webuntis import errors
+
 from env import loadenv
 
 
@@ -61,7 +63,7 @@ def get_untis_data(raum :str) -> list[Any] | None:
         #leerer Lehrer
         try:
             teacher = " ".join([t.name for t in h.teachers])
-        except (IndexError, AttributeError):
+        except (IndexError, AttributeError, errors.RemoteError):
             teacher = "---"
 
 
